@@ -39,7 +39,7 @@ export const business = {
   reviewUrl: '',
 
   // Final website address (used for canonical URLs, sitemap, structured data).
-  siteUrl: 'https://arunaelectricals.pages.dev',
+  siteUrl: 'https://aruna-electricals.vercel.app',
 }
 
 export const fullAddress = `${business.address.street}, ${business.address.locality}, ${business.address.city}, ${business.address.region} ${business.address.postalCode}`
