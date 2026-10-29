@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/bricolage-grotesque/index.css';
+
+@theme {
+  --color-navy: #12304a;
+  --color-navy-deep: #0d2438;
+  --color-brand: #2563eb;
+  --color-brand-dark: #1d4ed8;
+  --color-amber: #f59e0b;
+  --color-mist: #f3f6fa;
+  --color-ink: #1f2937;
+  --color-wa: #128c4a;
+  --font-sans: 'Bricolage Grotesque Variable', 'Noto Sans Tamil', 'Nirmala UI', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply text-navy;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    font-weight: 700;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-amber);
+    outline-offset: 3px;
+  }
+  [lang='ta'] {
+    letter-spacing: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 px-6 py-3 text-base font-semibold transition-colors;
+    border-radius: 0.5rem;
+  }
+  .btn-call {
+    @apply bg-amber text-navy hover:bg-[#e08f00];
+  }
+  .btn-wa {
+    @apply bg-wa text-white hover:bg-[#0f7a40];
+  }
+  .btn-dir {
+    @apply bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-ghost {
+    @apply bg-mist text-navy hover:bg-[#e6ecf4];
+  }
+  .section {
+    @apply py-20 sm:py-28;
+  }
+  .rise {
+    animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rise {
+      animation: none;
+    }
+  }
+  /* Repair job tag: chamfered corner, punched hole */
+  .tag {
+    clip-path: polygon(0 56px, 56px 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* ---- Visual polish ---- */
+.btn {
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: none;
+}
+/* dotted texture for dark sections (inline SVG, no gradient) */
+.dots {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='2' cy='2' r='1.6' fill='white' fill-opacity='.09'/%3E%3C/svg%3E");
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.rv-hide {
+  opacity: 0;
+  transform: translateY(26px);
+}
+.rv-hide.rv-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  .rv-hide {
+    opacity: 1;
+    transform: none;
+  }
+  .btn:hover {
+    transform: none;
+  }
+}
